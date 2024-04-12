@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes:regular" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Marcellus+SC:regular" rel="stylesheet" />
+<link rel="stylesheet" href="style.css">
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack-Cloud-Text-Poster</title>
+    <style>
+    
+    </style>
+</head>
+
+<body>
+    <div class="a4-canvas">
+        <h1>CAN MILES TRULY</h1>
+    
+        <h2>SEPARATE SOULS?</h2>
+            <div class="paragraph">
+                <p>
+                    In the past, we could only express our thoughts about our relatives and friends through letters. Now, with the emergence of cloud technology, everything has changed. We can talk to our distant relatives at any time and use voice and images to convey every little thing around us, as if they are still with us.
+                </p>
+
+                <p>This is not only the advancement of technology, but also the evolution of human emotional connection. Cloud technology allows us to transcend geographical boundaries, share moments of life, and experience the ups and downs of life together.
+                </p>
+
+                <p>
+                    In this world woven by cloud technology, everyone can find their own star. No matter where you are, there is a bridge built by technology that connects you with the world and the people you love.
+                </p>
+                
+                <b>
+                    <ul>
+                        <li>We step on the clouds</li>
+                        <li>Across mountains and seas</li>
+                        <li>Let love no longer be far away</li>
+                    </ul>
+                </b>
+                
+            </div>
+            <div class="text">
+                <br>
+                Love spans distance in the clouds
+            </div>
+
+    </div>
+    <div class="floating-word upload">CONNECT</div>
+    <div class="floating-word api-data">YOUR</div>
+    <div class="floating-word collection">HEART</div>
+    </div>
+
+
+    
+
+    <script>
+        let colorIndex = 0; // Set initial color index
+
+        function changeColors() {
+            const textElements = document.querySelectorAll('.floating-word, h1, h2, .paragraph,div.text');
+            const canvasElement = document.querySelector('.a4-canvas');
+
+            // Set changing color
+            const colors = [
+                { textColor: 'rgb(56, 54, 187)', bgColor: 'rgb(245, 235, 246)', borderColor: 'rgb(56, 54, 187)', gridColor: 'rgba(56, 54, 187, 0.5)' }, // original color
+                { textColor: 'rgb(218, 95, 80)', bgColor: 'rgb(235, 235, 235)', borderColor: 'rgb(218, 95, 80)', gridColor: 'rgba(218, 95, 80,0.5)' }, // red and gray
+                { textColor: 'rgb(0, 0, 0)', bgColor: 'rgb(255, 255, 255)', borderColor: 'rgb(0, 0, 0)', gridColor: 'rgba(0,0,0, 0.5)' },// B&W
+                { textColor: 'rgb(240,232,1)', bgColor: 'rgb(3,150,217)', borderColor: 'rgb(240,232,1)', gridColor: 'rgba(240,232,1, 0.5)' } // yellow&blue
+
+
+            ];
+
+            // Apply to new color
+            const color = colors[colorIndex % colors.length]; //Divide index by 4 and take the modulo so that it is always within this range.
+            textElements.forEach(element => {
+                element.style.color = color.textColor;
+            });
+            canvasElement.style.backgroundColor = color.bgColor;
+            canvasElement.style.borderColor = color.borderColor;
+
+            const newBackgroundImage = `
+            linear-gradient(to right, ${color.gridColor} 1px, transparent 1px),
+            linear-gradient(to bottom, ${color.gridColor} 1px, transparent 1px)`;
+            canvasElement.style.backgroundImage = newBackgroundImage;
+
+
+            colorIndex++;
+        }
+
+        //change colors every 2.5s
+        setInterval(changeColors, 2500);
+    </script>
+
+
+</body>
+
+</html>

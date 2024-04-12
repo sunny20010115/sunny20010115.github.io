@@ -1,0 +1,138 @@
+.a4-canvas {
+    width: 794px;
+    height: 1123px;
+    margin: 0 auto;
+    border: 3px solid #3836bb;
+    background-color: #f5ebf6;
+
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+
+    /* Create a grid */
+    background-size: 84px 84px;
+    background-image:
+        linear-gradient(to right, rgba(56, 54, 187, 0.5) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 54, 187, 0.5), transparent 1px);
+}
+
+/* A4 background */
+.floating-word {
+    position: fixed;
+    opacity: 0.2;
+    color: #3836bb;
+    font-size: 70px;
+    font-family: "Fira Code Light";
+    font-weight: bold;
+    animation-duration: 8s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    /* Loop the animation */
+    animation-timing-function: linear;/
+}
+
+
+
+@keyframes moveUpload {
+    from {
+        left: 1200px;
+        top: 900px;
+    }
+
+    to {
+        left: 1500px;
+        top: 100px;
+    }
+}
+
+@keyframes moveAPI {
+    from {
+        right: 1300px;
+        top: 200px;
+    }
+
+    to {
+        right: 1400px;
+        top: 700px;
+    }
+}
+
+@keyframes moveDataCollection {
+    from {
+        left: 1220px;
+        bottom: 800px;
+    }
+
+    to {
+        left: 1350px;
+        bottom: 300px;
+    }
+}
+
+.upload {
+    animation-name: moveUpload;
+}
+
+.api-data {
+    animation-name: moveAPI;
+}
+
+.collection {
+    animation-name: moveDataCollection;
+}
+
+
+h1 {
+    font-family: 'Marcellus SC';
+    color: #3836bb;
+    font-size: 65px;
+    margin: 0.8;
+    line-height: 1.2;
+    letter-spacing: 0.38cm;
+}
+
+/* title  */
+
+h2 {
+    font-family: 'Marcellus SC';
+    color: #3836bb;
+    font-size: 70px;
+    margin: 0;
+    line-height: 0.8;
+    letter-spacing: 0.2cm;
+    text-align: right;
+    font-style: normal;
+
+}
+
+.paragraph {
+    margin-top: 2cm;
+    width: 400px;
+    height: 600px;
+    color: #3836bb;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: "Fira Code Light";
+    /* A very technological font */
+}
+
+/* main text */
+
+div.text {
+    font-family: 'Marcellus SC';
+    color: #3836bb;
+    font-size: 70px;
+    margin: 0;
+    line-height: 0.8;
+    letter-spacing: 0.2cm;
+    text-align: right;
+    font-style: italic;
+}
+
+.a4-canvas,
+.floating-word,
+h1,
+h2,
+.paragraph {
+    transition: background-color 1.5s ease, color 1.5s ease, border-color 1.5s ease;
+}
