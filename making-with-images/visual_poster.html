@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+           
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            overflow: scroll;
+        }
+
+
+        .background-image {
+            background-image: url('Clouds_background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+           
+            position: fixed;
+          
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .center {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            transform: translate(0px, -120px);
+            height: 500px;
+            margin-top: 100px;
+            /* width: 100%;
+            padding-bottom: 200px; */
+           
+
+        }
+
+        .bottom {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            transform: translate(0px, -120px);
+            height: 300px;
+        }
+
+        .dynamic-image {
+            display: flex;
+            /* flex-direction: column; */
+           
+            align-items: center;
+            
+            justify-content: space-between;
+            
+            width: 100%;
+            
+        }
+
+        .dynamic-image img {
+            margin: 10px;
+            
+            max-width: 300px;
+           
+            height: auto;
+          
+        }
+
+        .heart {
+            width: 800px;
+            /* Adjust size as needed */
+            height: 500px;
+            z-index: 2;
+
+        }
+
+        .clock {
+            position: absolute;
+            width: 200px;
+           
+            height: 140px;
+            
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Clock positions around the heart */
+        .clock.top {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 20px);
+        }
+
+        .clock.bottom {
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50px);
+        }
+
+        .clock.left {
+            top: 50%;
+            left: 0;
+            transform: translate(0, -50%);
+        }
+
+        .clock.right {
+            top: 50%;
+            right: 0;
+            transform: translate(0, -50%);
+        }
+
+        .image1 {
+            width: 300px;
+        }
+
+        .clocks {
+            /* display: flex; */
+            /* height: 200px; */
+            position: relative;
+            text-align: center;
+        }
+
+        .dynamic-img {
+            width: 300px;
+            position: absolute;
+
+            animation-duration: 4s;
+            
+            animation-timing-function: linear;
+            
+            animation-iteration-count: infinite;
+            
+            animation-direction: alternate;
+            
+            animation-fill-mode: forwards;
+        }
+
+        .dynamic-img img {
+            width: 100%;
+        }
+
+        .dynamic-img.top {
+            bottom: 0;
+            left: 30%;
+            transform: translate(-50%, 0px);
+            
+            animation-name: LeftToRight;
+        }
+
+        .dynamic-img.left {
+            bottom: 0;
+            left: 0;
+            transform: translate(0%, 100%);
+            
+            animation-name: TopToBottom;
+        }
+
+        .dynamic-img.right {
+            bottom: 0;
+            right: 0;
+            transform: translate(0%, 50%);
+            
+            animation-name: BottomToTop;
+        }
+
+        .dynamic-img.bottom {
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 100%);
+            
+            animation-name: RightToLeft;
+        }
+
+        @keyframes LeftToRight {
+            0% {
+                margin-left: 0px;
+            }
+
+            25% {
+                margin-left: 100px;
+            }
+
+            50% {
+                margin-left: 300px;
+            }
+
+            75% {
+                margin-left: 400px;
+            }
+
+            100% {
+                margin-left: 500px;
+            }
+        }
+
+        @keyframes RightToLeft {
+            0% {
+                margin-left: 500px;
+            }
+
+            25% {
+                margin-left: 300px;
+            }
+
+            50% {
+                margin-left: 200px;
+            }
+
+            75% {
+                margin-left: 100px;
+            }
+
+            100% {
+                margin-left: 0px;
+            }
+        }
+
+        @keyframes TopToBottom {
+            0% {
+                bottom: -150px;
+                transform: scale(0.5);
+            }
+
+            25% {
+                bottom: -100px;
+                transform: scale(0.75);
+            }
+
+            50% {
+                bottom: -50px;
+                transform: scale(1);
+            }
+
+            75% {
+                bottom: 0px;
+                transform: scale(1.5);
+            }
+
+            100% {
+                bottom: 50x;
+                transform: scale(2);
+            }
+        }
+
+        @keyframes BottomToTop {
+            0% {
+                bottom: 50px;
+                transform: scale(0.5);
+            }
+
+            25% {
+                bottom: 0px;
+                transform: scale(0.75);
+            }
+
+            50% {
+                bottom: 50px;
+                transform: scale(1);
+            }
+
+            75% {
+                bottom: 100px;
+                transform: scale(1.5);
+            }
+
+            100% {
+                bottom: 150x;
+                transform: scale(2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-image"></div>
+    <div class="center">
+        <div class="clocks">
+            <img src="heart.png" class="heart">
+            <img src="clock.png" class="clock top">
+            <img src="clock.png" class="clock right">
+            <img src="clock.png" class="clock bottom">
+            <img src="clock.png" class="clock left">
+        </div>
+
+        <!-- <div class="dynamic-image"> -->
+        
+        <!-- </div> -->
+    </div>
+
+    <div class="bottom">
+        <div class="dynamic-img top">
+            <img src="image1.png" id="image1">
+        </div>
+        <div class="dynamic-img right">
+            <img src="image2.png" id="image2">
+        </div>
+        <div class="dynamic-img bottom">
+            <img src="image3.png" id="image3">
+        </div>
+        <div class="dynamic-img left">
+            <img src="image4.png" id="image4">
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to cycle clocks
+        const clocks = document.querySelectorAll('.clock');
+        let activeIndex = 0;
+
+        function cycleClocks() {
+            // Hide all clocks
+            clocks.forEach(clock => clock.style.opacity = 0);
+
+            // Show next clock
+            clocks[activeIndex].style.opacity = 1;
+            activeIndex = (activeIndex + 1) % clocks.length;
+        }
+
+        // Start cycling every 2 seconds
+        setInterval(cycleClocks, 1500);
+    </script>
+</body>
+
+</html>
