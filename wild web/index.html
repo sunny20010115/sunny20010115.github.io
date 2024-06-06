@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tale of the Learning Bees: A Journey through Data</title>
+    <link href="https://fonts.googleapis.com/css?family=Macondo:regular" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Neucha:regular" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite:regular" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Comic+Neue:300,300italic,regular,italic,700,700italic" rel="stylesheet" />
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Neue';
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: url('icon.png'), auto;
+        }
+
+        body, a, button, .arrow {
+    cursor: url('icon.png'), auto;
+}
+
+a, button, .arrow {
+    cursor: url('icon2.png'), pointer;
+}
+
+
+
+        .nav {
+            height: 50px;
+            background: black;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navlist {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .navlist li {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .navlist a {
+            color: blanchedalmond;
+            display: block;
+            padding: 0 10px;
+        }
+
+
+        .navlist a:hover {
+            background: blueviolet;
+        }
+
+
+        header {
+            padding-top: 60px;
+            margin: 50px auto 20px;
+            background: #ffc700;
+            padding: 20px;
+            font-size: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* .video-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            max-width: 1000px;
+            height: 450px;
+            border: none;
+        } */
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        section {
+            font-family: 'Comic Neue';
+            font-size: 30px;
+            background: rgb(246, 246, 103);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        section h2 {
+            margin-bottom: 10px;
+        }
+
+        section p {
+            margin-top: 0;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .header-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+        }
+
+        .arrow {
+    position: fixed;
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #ffc700;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.arrow-left {
+    left: 20px;
+}
+
+.arrow-right {
+    right: 20px;
+}
+
+.arrow svg {
+    fill: white ;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+.i1 {
+    width: 50%; 
+    height: auto; 
+    display: block;
+    margin: 0 20px 20px 0; 
+    border-right: 30px;
+    float: left; 
+}
+
+
+.i2 {
+    width: 100%; 
+    height: auto; 
+    display: block;
+    margin: 0 20px 20px 0; 
+    border-right: 30px;
+    float: left; 
+}
+
+.i3 {
+    width: 40%; 
+    height: auto; 
+    display: block;
+    margin: 0 20px 20px 0; 
+    border-right: 30px;
+    float: right; 
+}
+
+h1 {
+    font-family: 'Macondo';
+    font-size: 90px;
+    line-height: 0.9;
+    font-style:initial;
+}
+
+.line {
+    position: absolute;
+            bottom: -50px; 
+            left: 0;
+            width: auto;
+            max-height: 90px;
+            max-width: 1400px;
+            margin-left: 1px;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="header-bg" id="header-bg"></div>
+
+    <div class="arrow arrow-left" id="prevArrow" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </div>
+    <div class="arrow arrow-right" id="nextArrow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+    </div>
+    
+    <div class="header-bg"></div>
+    <canvas id="backgroundCanvas"></canvas>
+    <div class="nav">
+        <ul class="navlist">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#data-collection">Data Collection</a></li>
+            <li><a href="#data-cleaning">Data Cleaning</a></li>
+            <li><a href="#feature-selection">Feature Selection</a></li>
+            <li><a href="#model-training">Model Training</a></li>
+            <li><a href="#model-evaluation">Model Evaluation</a></li>
+            <li><a href="#prediction-deployment">Prediction and Deployment</a></li>
+        </ul>
+    </div>
+
+    <header id="home">
+        <h1>The Tale of the Learning Bees:<br> Journey through Data  (＾▽＾)🐝</h1>
+       
+           
+        
+        <!-- <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/f_uwKZIAeM0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+           
+        </div> -->
+        <img src="line.png" alt="line" class="line">
+    </header>
+    
+    <main>
+       
+        <section id="data-collection">
+            <h2>Chapter 1. Data Collection</h2>
+            <div class="image-container">
+                <img src="1.png" alt="Data Collection Image">
+            </div>
+            <p>
+                On a sunny morning, a group of bees leave their hives and start their day's work. They fly to the flower fields in search of the sweetest nectar. These hardworking little animals constantly fly from one flower to another, collecting every drop of precious nectar. Nectar is not only their food source, but also the raw material for them to make honey. Through this collaboration, bees are able to efficiently collect large amounts of nectar to ensure that the needs of the entire hive are met.
+            </p>
+            <br>
+            <p>
+                This pattern of bee behavior is strikingly similar to the data collection process in machine learning. In machine learning, data collection is the first step. Just like bees collecting nectar, we need to collect data from a variety of sources. These sources can be databases, APIs, file systems, or even real-time data streams. We need to ensure that the collected data is diverse and comprehensive so that subsequent model training can have enough information to learn and predict.
+            </p>
+            
+            <img src="c11.png" alt="Data Collection Image1" class="i1"> 
+            <!-- img from https://www.taskus.com/insights/ai-data-collection-services-how-to-guide/ -->
+            <br>
+            <p>
+                For example, when we want to train an image classification model, we need to collect a large number of images, which may come from the Internet, may be captured by a camera, or may be an existing database. Just like bees flying between different flowers, we also need to switch between different data sources to collect as much useful data as possible.
+                </p>
+        </section>
+        <section id="data-cleaning">
+            <h2>Chapter 2. Data Cleaning</h2>
+            <div class="image-container">
+                <img src="2.png" alt="Data Cleaning Image">
+            </div>
+            <p>
+                 When bees select nectar, they screen and filter it, and they also discard nectar that is mixed with impurities or of poor quality. This process is very important for the quality of honey.
+                </p>
+                <br>
+                <p>
+                    This is very similar to the data cleaning process in machine learning. After data collection, we will get a large amount of raw data. But these data may contain various problems, such as missing, duplicate, outliers, or wrong data. If we use these problematic data directly, the performance and accuracy of the model will be affected. Therefore, we need to clean and process the data.
+                </p>
+                <img src="c21.png" alt="Data Cleaning Image1" class="i2"> 
+                <!-- https://www.obviously.ai/post/data-cleaning-in-machine-learning -->
+                <p>
+                    The first step in data cleaning is to identify missing values. We can use a variety of methods to deal with missing values, such as deleting records containing missing values, filling missing values ​​with the mean or median, or using more complex interpolation methods. Next, we also need to delete or correct duplicate and wrong data.
+                </p>
+                <br>
+                <p>
+                    Another important step is to deal with outliers. These outliers may be caused by data entry errors, sensor failures, or other reasons. We can use statistical methods or machine learning algorithms to identify and deal with these outliers.
+                </p>
+                
+        </section>
+        <section id="feature-selection">
+            <h2>Chapter 3. Feature Selection</h2>
+            <div class="image-container">
+                <img src="3.png" alt="Feature Selection Image">
+            </div>
+            
+        <p>In the world of bees, finding the sweetest nectar is an important task. After the initial screening in the previous step, bees will choose flowers that are most likely to be rich in nectar based on features such as color, shape, and smell.</p>
+        <br>
+        <p>This process is very similar to feature selection, which is equally important in machine learning. When we are faced with a large and complex data set, not all features will contribute to the performance of the model. Some features may affect the accuracy and efficiency of the model. Therefore, the goal of feature selection is to select the most useful parts from many features.</p>
+        <img src="c31.png" alt="Feature Selection" class="i3"> 
+        <!-- https://medium.com/@anirudhsreekumar98/feature-selection-techniques-in-machine-learning-d12ca95527b2 -->
+        
+        <br><p>The feature selection process can be divided into the following steps:</p>
+        <p>
+           <br> <b>1.Feature evaluation:</b><br>
+            First, we need to evaluate the importance of each feature to the target variable. Just as bees judge the richness of nectar by perceiving the characteristics of flowers, we judge the usefulness of each feature by calculating its importance score.
+<br>
+<br><b>2.Feature filter:</b><br>
+After the evaluation is completed, we need to filter these features. Features with lower scores will be eliminated, and higher ones will be retained. This process helps to reduce model complexity and improve training efficiency.
+<br>
+<br><b>3.Feature combination:</b><br>
+Sometimes, the combination of multiple features can improve the performance of the model, so we can use feature engineering to combine some original features to generate new features, thereby improving the predictive ability of the model.
+<br>
+
+<br><b>4.Repeated verification:</b><br>
+Feature selection is an iterative process. We need to continuously train the model, evaluate the model performance, and adjust the feature selection strategy based on the results.
+</p>
+      <p>Feature selection is not only a technical process, but also an art that requires experience and intuition. Just like bees flying among flowers and finding the best flowers based on experience, data scientists also need to find the most valuable features in a large amount of data to lay the foundation for the success of the model.</p>
+    </section>
+        <section id="model-training">
+            <h2>Chapter 4. Model Training</h2>
+            <div class="image-container">
+                <img src="4.png" alt="Model Training Image">
+            </div>
+            <p>
+                Bees remember which flowers they have visited before and learn from other bees' dances to find the best nectar. This process repeats over and over again, helping them find nectar faster.
+            </p>
+           <br>
+            <p>
+                Model training is very similar to this process. Just as bees fly to different flowers to collect nectar, algorithms learn from data and adjust themselves to reduce errors and improve accuracy.
+            </p>
+            <br>
+            <p>
+                Bees use memory and feedback from other bees to find good flowers. In machine learning, models repeatedly adjust themselves to get smarter based on data feedback.
+            </p>
+            <br>
+            <p>
+                Just as bees sometimes explore new flowers to check for nectar, models also validate themselves with new data. This ensures that the model performs well in the face of new data, just as bees are not dependent on one nectar source.
+            </p>
+            <br>
+            <p>
+                Bees optimize their routes to collect as much nectar as possible and consume the least amount of energy. In machine learning, algorithms adjust parameters to find the best settings and reduce prediction errors.
+            </p>
+            <br>
+            <p>
+                Over time, bees will build effective routes and find reliable sources of nectar. Machine learning models will also gradually get better and eventually reach a desired state and are ready to use.
+            </p>
+           
+        </section>
+        <section id="model-evaluation">
+            <h2>Chapter 5. Model Evaluation</h2>
+            <div class="image-container">
+                <img src="5.png" alt="Model Evaluation Image">
+            </div>
+            
+        <p>In the world of bees, it is very important to know whether their efforts to collect nectar were successful. At the end of a day's foraging, the bees return to the hive. Together, they evaluate this information and decide which flowers are good enough and which foraging paths are worth following. This ensures that they are increasingly efficient at finding nectar.</p>
+            <br><p>Similarly, in machine learning, there is a process of evaluating models. This is like checking what the model has learned from the data. After training the model, we need to test it with a new set of data. This helps us understand how the model performs when faced with new data. We measure the performance of the model with metrics such as accuracy.</p>
+           <br> <p>Model evaluation is comparing the predicted results with the actual results. This allows us to see any differences and measure how good the model is. Just like bees adjust their foraging strategies based on the quality of the nectar, machine learning models can also be adjusted and improved based on the evaluation results. By continuously evaluating and improving, we can ensure that the model performs well and accurately in real-world applications.</p>
+        </section>
+        <section id="prediction-deployment">
+            <h2>Chapter 6. Prediction and Deployment</h2>
+            <div class="image-container">
+                <img src="6.png" alt="Prediction and Deployment Image">
+            </div>
+            <p>At the end, the bees use the experience gathered to predict the best flowers and nectar sources. In this way, the bees can effectively navigate to the most promising flowers, ensuring the survival and prosperity of the hive.</p>
+            <br><p>Similarly, in machine learning, the prediction and deployment phases are where the trained and evaluated models are put to real-world use. After thorough training and rigorous evaluation, the model is ready to make predictions on new data. Deployment involves integrating the model into a production environment where it can process live data and provide real-time insights or decisions.</p>
+            <br><p>The prediction process uses the patterns and relationships learned during training to generate outputs for new inputs. Deployment ensures that the model operates effectively in a real-world environment and continues to learn and adapt as it encounters new data. Just like a bee dynamically adjusts its foraging route based on real-time feedback.</p>
+        </section>
+
+
+    </main>
+
+  
+        <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const images = [
+            'background1.png',
+            'background2.png',
+            'background3.png'
+        ];
+        let currentIndex = 0;
+        const headerBg = document.getElementById('header-bg');
+
+        function changeBackground() {
+            headerBg.style.backgroundImage = `url(${images[currentIndex]})`;
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        
+        changeBackground();
+        
+
+        setInterval(changeBackground, 1500);
+    });
+
+
+       
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll("main > section");
+    const prevArrow = document.getElementById("prevArrow");
+    const nextArrow = document.getElementById("nextArrow");
+    let currentIndex = 0;
+
+    function updateArrows() {
+        prevArrow.style.display = currentIndex === 0 ? "none" : "flex";
+        nextArrow.style.display = currentIndex === sections.length - 1 ? "none" : "flex";
+    }
+
+    prevArrow.addEventListener("click", function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            sections[currentIndex].scrollIntoView({ behavior: "smooth" });
+            updateArrows();
+        }
+    });
+
+    nextArrow.addEventListener("click", function() {
+        if (currentIndex < sections.length - 1) {
+            currentIndex++;
+            sections[currentIndex].scrollIntoView({ behavior: "smooth" });
+            updateArrows();
+        }
+    });
+
+    updateArrows();
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll("main > section");
+    const prevArrow = document.getElementById("prevArrow");
+    const nextArrow = document.getElementById("nextArrow");
+    const getStarted = document.getElementById("getStarted");
+    let currentIndex = 0;
+
+    function updateArrows() {
+        prevArrow.style.display = currentIndex === 0 ? "none" : "flex";
+        nextArrow.style.display = currentIndex === sections.length - 1 ? "none" : "flex";
+    }
+
+    prevArrow.addEventListener("click", function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            sections[currentIndex].scrollIntoView({ behavior: "smooth" });
+            updateArrows();
+        }
+    });
+
+    nextArrow.addEventListener("click", function() {
+        if (currentIndex < sections.length - 1) {
+            currentIndex++;
+            sections[currentIndex].scrollIntoView({ behavior: "smooth" });
+            updateArrows();
+        }
+    });
+
+    getStarted.addEventListener("click", function() {
+        currentIndex = 0;
+        sections[currentIndex].scrollIntoView({ behavior: "smooth" });
+        updateArrows();
+    });
+
+    updateArrows();
+});
+
+
+    </script>
+</body>
+</html>
